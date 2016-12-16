@@ -1,15 +1,14 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%~~~~~~~~~~~~~~~~~~~~~~~~
 % Masters/Doctoral Thesis 
 % Class File
 % Version 1.5 (22/11/16)
-%
 % This class has been downloaded from:
 % http://www.LaTeXTemplates.com
-%
 % Authors:
 % Vel (vel@latextemplates.com)
 % Johannes Böttcher
-%
+% Editor: 
+% L.A. Frisby
 % Notes:
 % 1) This class file defines the structure and layout of the template file (main.tex).
 % 2) It has been written in such a way that under most circumstances you should not need
@@ -19,12 +18,9 @@
 % Class license:
 % LPPL v1.3c (http://www.latex-project.org/lppl)
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%~~~~~~~~~~~~~~~~~~~~~~~~
 
-%----------------------------------------------------------------------------------------
-%	CLASS DEFINITION AND PARAMETERS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~ CLASS DEFINITION & PARAMETERS ~~~~~~
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
 \newcommand{\classname}{MastersDoctoralThesis}
 \ProvidesClass{\classname}[2016/11/22 v1.5 LaTeXTemplates.com]
@@ -51,12 +47,10 @@
 \DeclareOption{headsepline}{\booltrue{headsepline}}
 \DeclareOption{consistentlayout}{\booltrue{consistentlayout}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\baseclass}}
-
 \ProcessOptions\relax
-
 \LoadClass{\baseclass}
 
-%  Simple interface for the user  to customize the chapter titles 
+%~~~~~~ Customize Chapter Titles ~~~~~~
 \ProvideDocumentCommand{\abovechapterskip}{}{\vspace*{20pt}}
 \ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{40pt}}
 \ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{20pt}}
@@ -94,8 +88,7 @@
 	}
 }
 
-
-% Addchap provides unnumbered chapters with an entry in the table of contents as well as an updated header
+%~~~~~~ Addchap provides unnumbered chapters with an entry in the table of contents as well as an updated header ~~~~~~
 \ProvideDocumentCommand{\addchap}{ s o m }{%
 	\chapter*{#3}%
 	\markboth{}{}%
@@ -126,12 +119,8 @@
 	}%
 }%
 
-%----------------------------------------------------------------------------------------
-%	CLASS OPTIONS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~ CLASS OPTIONS ~~~~~~
 \ifbool{parskip}{\RequirePackage{parskip}} % If the parskip option is passed to the class, require the parskip package 
-
 
 \ifbool{listtoc}{% If the liststotoc option has been passed to the class, add the lists to the table of contents
 	\patchcmd{\listoftables}{\@starttoc{lot}}{%
@@ -155,7 +144,7 @@
 \patchcmd{\listoftables}{\MakeUppercase}{\MakeMarkcase}{}{}
 \patchcmd{\listoftables}{\MakeUppercase}{\MakeMarkcase}{}{}
 
-% If the option `nolistspacing' is given, the spacing in the different lists is reduced to single spacing. This option is only useful, if the spacing of the document has been changed to onehalfspacing or doublespacing.
+% Note:  If the option `nolistspacing' is given, the spacing in the different lists is reduced to single spacing. This option is only useful, if the spacing of the document has been changed to onehalfspacing or doublespacing.
 \ifbool{nolistspace}{
 	\patchcmd{\listoffigures}{%
 		\@starttoc{lof}
@@ -177,35 +166,20 @@
 	}{}{}%
 }{}
 
-
-%----------------------------------------------------------------------------------------
-%	REQUIRED PACKAGES
-%----------------------------------------------------------------------------------------
-
-\RequirePackage{babel} % Required for automatically changing names of document elements to languages besides english
-
-\RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
-
-\RequirePackage{scrhack} % Loads fixes for various packages
-
-\RequirePackage{setspace} % Required for changing line spacing
-
-\RequirePackage{longtable} % Required for tables that span multiple pages (used in the symbols, abbreviations and physical constants pages)
-
-\RequirePackage{siunitx} % Required for \SI commands
-
-\RequirePackage{graphicx} % Required to include images
-\graphicspath{{Figures/}{./}} % Specifies where to look for included images
-
-\RequirePackage{booktabs} % Required for better table rules
-
-\RequirePackage{caption} % Required for customising the captions
+%~~~~~~	REQUIRED PACKAGES ~~~~~~
+\RequirePackage{babel}
+\RequirePackage{scrbase}
+\RequirePackage{scrhack} 
+\RequirePackage{setspace}
+\RequirePackage{longtable}
+\RequirePackage{siunitx}
+\RequirePackage{graphicx}
+\graphicspath{{Figures/}{./}}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
 
-%----------------------------------------------------------------------------------------
-%	DEFINE CUSTOM THESIS INFORMATION COMMANDS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~ DEFINE THESIS COMMANDS ~~~~~~
 \DeclareDocumentCommand{\thesistitle} { o m }{
 	\IfBooleanTF{#1} {\DeclareDocumentCommand{\shorttitle}{ }{#1}
 	{\DeclareDocumentCommand{\shorttitle}{}{#2}}}
@@ -217,6 +191,8 @@
 \NewDocumentCommand     { \supervisor } { m } { \DeclareDocumentCommand { \supname       } { } {#1}  }
 \NewDocumentCommand     { \examiner   } { m } { \DeclareDocumentCommand { \examname      } { } {#1}  }
 \NewDocumentCommand     { \degree     } { m } { \DeclareDocumentCommand { \degreename    } { } {#1}  }
+\NewDocumentCommand {\CIPCode   } { m }
+{ \DeclareDocumentCommand { \CIPCode  } { } {#1}  }
 \NewDocumentCommand     { \addresses  } { m } { \DeclareDocumentCommand { \addressname   } { } {#1}  }
 \NewDocumentCommand     { \university } { m } { \DeclareDocumentCommand { \univname      } { } {#1}  }
 \NewDocumentCommand     { \department } { m } { \DeclareDocumentCommand { \deptname      } { } {#1}  }
@@ -225,6 +201,7 @@
 \NewDocumentCommand     { \subject    } { m } { \DeclareDocumentCommand { \subjectname   } { } {#1}  }
 \NewDocumentCommand     { \keywords   } { m } { \DeclareDocumentCommand { \keywordnames  } { } {#1}  }
 
+%%~~~~~~~~~~~~~~~~~~~~~~~~
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
 	\if@openright\cleardoublepage\else\clearpage\fi
 	\ifdef{\phantomsection}{\phantomsection}{}% The \phantomsection command is necessary for hyperref to jump to the correct page
@@ -241,41 +218,28 @@
 	\addcontentsline{toc}{chapter}{#1}%
 }
 
-%----------------------------------------------------------------------------------------
-%	COLOURS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~	COLOURS ~~~~~
 \usepackage{xcolor} % Required for specifying custom colours
 
 \colorlet{mdtRed}{red!50!black}
 
-%----------------------------------------------------------------------------------------
-%	MARGINS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~ Margins ~~~~~~
 \RequirePackage{geometry}
 \geometry{
 	headheight=4ex,
 	includehead,
 	includefoot
 }
-
 \raggedbottom
 
-%----------------------------------------------------------------------------------------
-%	PENALTIES
-%----------------------------------------------------------------------------------------
-
+%~~~~~~ PENALTIES ~~~~~~
 \doublehyphendemerits=10000 % No consecutive line hyphens
 \brokenpenalty=10000 % No broken words across columns/pages
 \widowpenalty=9999 % Almost no widows at bottom of page
 \clubpenalty=9999 % Almost no orphans at top of page
 \interfootnotelinepenalty=9999 % Almost never break footnotes
 
-%----------------------------------------------------------------------------------------
-%	HEADERS AND FOOTERS
-%----------------------------------------------------------------------------------------
-
+%~~~~~~	HEADERS AND FOOTERS ~~~~~~
 \RequirePackage[markcase=used]{scrlayer-scrpage}
 \providepairofpagestyles{thesisSimple}{%
 	\clearpairofpagestyles%
@@ -315,10 +279,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 
-%----------------------------------------------------------------------------------------
-%	ABBREVIATIONS PAGE DESIGN
-%----------------------------------------------------------------------------------------
-
+%~~~~~~	ABBREVIATIONS PAGE DESIGN ~~~~~~
 \newcommand{\abbrevname}{List of Abbreviations}
 \providecaptionname{english,british,american}{\abbrevname}{List of Abbreviations}
 \providecaptionname{ngerman,german,austrian,naustrian}{\abbrevname}{Abk\"urzungsverzeichnis}
@@ -332,9 +293,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\ifbool{nolistspace}{\endgroup}{}
 }
 
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE DESIGN
-%----------------------------------------------------------------------------------------
+%~~~~~~	ABSTRACT PAGE DESIGN ~~~~~~
 
 \DeclareDocumentCommand{\abstractauthorfont}{}{}
 \DeclareDocumentCommand{\abstracttitlefont}{}{}
